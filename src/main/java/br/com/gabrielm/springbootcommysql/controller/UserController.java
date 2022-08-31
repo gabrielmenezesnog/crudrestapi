@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gabrielm.springbootcommysql.model.User;
@@ -16,6 +17,7 @@ import br.com.gabrielm.springbootcommysql.repository.UserRepository;
 // Anotação para vincular as operações REST
 // aos protocolos HTTP (get, post, put -alteração- e delete)
 @RestController
+@RequestMapping("/user") // endereço da raiz
 public class UserController {
   // delegando a tarefa criar o objeto para o Spring
   // cria o objeto e o injeta em repository
@@ -23,11 +25,10 @@ public class UserController {
   private UserRepository repository;
 
   // Listar todos os usuários - GET
-  @GetMapping(path = "/user")
+  @GetMapping()
   public List<User> consultAll() {
     return repository.findAll();
   }
-  
 
   // Listar um usuário ou grupo específico - GET
   // de acordo com nome/ caractere informado
